@@ -2,17 +2,22 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema(
-    {
-        name: { type: String, required: true },
-        email: { type: String, required: true },
-        phone: { type: Number, required: true },
-        password: { type: String, required: true}
-    },
-    {
-        versionKey: false,
-        timestamps: true,
-    }
-)
+  {
+    name: { type: String, required: true },
+    surname: { type: String, required: false },
+    phone: { type: Number, required: true },
+    dob: { type: String, required: true },
+    gender: { type: String, required: true, default: "Male" },
+    post_Code: { type: String, required: true },
+    preferred_code: { type: String, required: false },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+  {
+    versionKey: false,
+    timestamps: true,
+  }
+);
 
 userSchema.pre("save", function (next) {
   // either we are creating a user or we are updating a user
@@ -25,4 +30,4 @@ userSchema.methods.checkPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("user", userSchema);

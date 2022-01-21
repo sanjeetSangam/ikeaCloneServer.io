@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 
 const newToken = (user) => {
-  return jwt.sign({ user: user }, "sdwedfwef23dcf");
+  return jwt.sign({ user: user }, process.env.LOGIN_SALT);
 };
 // process.env.JWT_SECRET_KEY;
 const register = async (req, res) => {
