@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     gender: { type: String, required: false, default: "Male" },
     post_Code: { type: String, required: false },
     preferred_code: { type: String, required: false },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },
   {
